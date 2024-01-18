@@ -1,0 +1,45 @@
+<template >
+    <lightning-card  variant="Narrow" >
+        <h1 style="font-weight: bold" > {object1FieldName} </h1>
+        <lightning-layout multiple-rows  if:true={showPath1}>
+            
+            <lightning-layout-item size="12" padding="around-small" small-device-size="3" medium-device-size="6" large-device-size="10" >
+                <lightning-progress-indicator current-step={object1CurrentValue} type="path" has-error="true" variant="base">
+                    
+                    <template if:true={object1PathValues} for:each={object1PathValues} for:item="step" for:index="index">
+                        <lightning-progress-step data-index={index} data-value={step.value}
+                            onchange={path1HandleSelectChange} onclick={path1HandleSelectChange}
+                            onselect={path1HandleSelectChange} key={step.value} label={step.label}
+                            value={step.value}>
+                        </lightning-progress-step>
+                    </template>
+                </lightning-progress-indicator>
+                
+            </lightning-layout-item>
+        
+            <lightning-layout-item if:true={showPath1} size="12" padding="around-small" small-device-size="2" medium-device-size="2" large-device-size="2">
+                <lightning-button variant="brand" label="Mark status as Complete" title={buttonLabel} onclick={path1HandleClick}></lightning-button>
+            </lightning-layout-item>
+
+        </lightning-layout>
+        <h1 style="font-weight: bold" > {object2FieldName} </h1>
+        <lightning-layout multiple-rows if:true={showPath2}>
+            <lightning-layout-item size="12" padding="around-small" small-device-size="3" medium-device-size="6" large-device-size="10" >
+                <lightning-progress-indicator current-step={object2CurrentValue} type="path" has-error="true" variant="base">
+                    
+                    <template if:true={object2PathValues} for:each={object2PathValues} for:item="step" for:index="index">
+                        <lightning-progress-step data-index={index} data-value={step.value}
+                            onchange={path2HandleSelectChange} onclick={path2HandleSelectChange}
+                            onselect={path2HandleSelectChange} key={step.value} label={step.label}
+                            value={step.value}>
+                        </lightning-progress-step>
+                    </template>
+                </lightning-progress-indicator>
+            </lightning-layout-item>
+        
+            <lightning-layout-item size="12" padding="around-small" small-device-size="2" medium-device-size="2" large-device-size="2" if:true={showPath2} >
+                <lightning-button variant="brand" label="Mark status as Complete" title={buttonLabel} onclick={path2HandleClick}></lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>
